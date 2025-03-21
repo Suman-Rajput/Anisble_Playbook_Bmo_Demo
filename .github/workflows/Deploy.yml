@@ -1,0 +1,23 @@
+name: Run Ansible Playbook(Hello.yml)
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  ansible-playbook:
+    runs-on: Ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4  
+
+      - name: Install Ansible
+        run: |
+           sudo apt update
+           sudo apt install -y ansible
+      
+      - name: Run Playbook
+        run: ansible-playbook hello.yml
